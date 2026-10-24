@@ -17,10 +17,66 @@ SC = [
     ["O", "O", "O", "O"]
 ]
 
-# INPUT DESTINATION AND EACH TICKET PRICE
+# STATIONS AND PRICES BASED ON DEPARTURE
+ROUTES = {
+    "Halim (Jakarta)": {
+        "1": ("Karawang", 100000),
+        "2": ("Padalarang (Bandung)", 150000),
+        "3": ("Tegalluar Summarecon (Bandung)", 150000)
+    },
+    "Karawang": {
+        "1": ("Halim (Jakarta)", 100000),
+        "2": ("Padalarang (Bandung)", 150000),
+        "3": ("Tegalluar Summarecon (Bandung)", 150000)
+    },
+    "Padalarang (Bandung)": {
+        "1": ("Halim (Jakarta)", 150000),
+        "2": ("Karawang", 150000),
+        "3": ("Tegalluar Summarecon (Bandung)", 50000)
+    },
+    "Tegalluar Summarecon (Bandung)": {
+        "1": ("Halim (Jakarta)", 150000),
+        "2": ("Karawang", 150000),
+    }
+}
+
+DEPARTURES = {
+    "1": "Halim (Jakarta)",
+    "2": "Karawang",
+    "3": "Padalarang (Bandung)",
+    "4": "Tegalluar Summarecon (Bandung)"
+}
+
 print("Welcome to whoosh")
-DS = input("enter your destination: ")
-PT = 1000000
+
+# CHOOSE DEPARTURE STATION
+print("\nChoose your departure station:")
+for key, name in DEPARTURES.items():
+    print(f"{key}. {name}")
+
+dep_choice = ""
+while dep_choice not in DEPARTURES:
+    dep_choice = input("Enter departure number: ")
+    if dep_choice not in DEPARTURES:
+        print("Invalid choice! Please enter a number from the list.")
+
+departure = DEPARTURES[dep_choice]
+print(f"Departure station: {departure}")
+
+# CHOOSE DESTINATION STATION
+STATIONS = ROUTES[departure]
+print("\nChoose your destination:")
+for key, (name, price) in STATIONS.items():
+    print(f"{key}. {name} Rp {price:,}")
+ 
+choice = ""
+while choice not in STATIONS:
+    choice = input("Enter destination number: ")
+    if choice not in STATIONS:
+        print("Invalid choice! Please enter a number from the list.")
+ 
+DS, PT = STATIONS[choice]
+print(f"You selected {DS}, ticket price Rp {PT:,}")
 
 # INPUT THE NUMBER OF PASSENGER
 P = 0
