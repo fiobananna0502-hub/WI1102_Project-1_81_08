@@ -94,7 +94,13 @@ PD = []
 for i in range(P):
     print(f"\n Passenger {i + 1}")
     name = input("Enter Name: ")
-    nik = input("Enter NIK: ")
+
+    # LOOP TO INPUT NIK UNTIL IT IS EXACTLY 16 DIGITS
+    while True:
+        nik = input("Enter NIK (16 digits): ")
+        if len(nik) == 16 and nik.isdigit():
+            break
+        print("Invalid NIK! NIK must be exactly 16 digits (numbers only).")
 
 # LOOP TO SELECT A SEAT UNTIL A VALID AND AVAILABLE SEAT IS CHOSEN
     while True:
